@@ -1,2 +1,2 @@
 include ':app'
-rootProject.name = "Android-MVVM-Template"
+rootProject.name = "Sulcheduler"
