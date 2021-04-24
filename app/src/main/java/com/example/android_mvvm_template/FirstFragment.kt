@@ -11,7 +11,7 @@ class FirstFragment : BaseFragment<FragmentFirstBinding, MainViewModel>(R.layout
 
     override fun onViewCreated(binding: FragmentFirstBinding, savedInstanceState: Bundle?) {
         binding.button.setOnClickListener {
-            val action = FirstFragmentDirections.actionFirstFragmentToSecondFragment()
+            val action = FirstFragmentDirections.actionFirstFragmentToRegisterFragment()
             findNavController().navigate(action)
         }
     }

@@ -7,4 +7,7 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="un_focused">#dcdcdc</color>
+    <color name="input_error">#deff4646</color>
+    <color name="active_blue">#1e50ff</color>
 </resources>
