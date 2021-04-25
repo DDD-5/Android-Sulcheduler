@@ -4,14 +4,16 @@ import androidx.lifecycle.*
 
 class RegisterViewModel : ViewModel() {
     val nickname = MutableLiveData("")
-
     val nicknameCountString = nickname.map {
         "${it.count()}/$MAX_LENGTH_OF_USER_NAME"
     }
+    val nicknameColorStatus = MediatorLiveData<NicknameColorStatus>()
 
-    val nicknameEnableStatus = MediatorLiveData<NicknameEnableStatus>()
+    val isOkButtonActive = MediatorLiveData<Boolean>()
 
     val birthYear = MutableLiveData<String>()
+    private val isBirthYearValid: Boolean
+        get() = birthYear.value != null && birthYear.value?.length == BIRTH_YEAR_LENGTH
 
     private val _isNicknameDuplication = MutableLiveData<Boolean?>()
     val isNicknameDuplication: LiveData<Boolean?> = _isNicknameDuplication
@@ -19,16 +21,14 @@ class RegisterViewModel : ViewModel() {
     private val _isFemale = MutableLiveData(true)
     val isFemale: LiveData<Boolean> = _isFemale
 
-
     init {
         initMediatorLiveData()
     }
 
-
     fun onClickDuplicationCheckBtn() {
         if (nickname.value.isNullOrEmpty().not()) {
             // TODO API 연동
-            _isNicknameDuplication.value = true
+            _isNicknameDuplication.value = false
         }
     }
 
@@ -37,18 +37,27 @@ class RegisterViewModel : ViewModel() {
     }
 
     private fun initMediatorLiveData() {
-        nicknameEnableStatus.run {
+        isOkButtonActive.run {
+            addSource(isNicknameDuplication) {
+                value = it == false && isBirthYearValid
+            }
+            addSource(birthYear) {
+                value = isBirthYearValid && isNicknameDuplication.value == false
+            }
+        }
+
+        nicknameColorStatus.run {
             addSource(nickname) {
                 _isNicknameDuplication.value = null
                 value = if (it.isEmpty()) {
-                    NicknameEnableStatus.NORMAL
+                    NicknameColorStatus.NORMAL
                 } else {
-                    NicknameEnableStatus.ENABLE
+                    NicknameColorStatus.ENABLE
                 }
             }
             addSource(isNicknameDuplication) {
                 if (it != null) {
-                    value = if (it) NicknameEnableStatus.ERROR else NicknameEnableStatus.ENABLE
+                    value = if (it) NicknameColorStatus.ERROR else NicknameColorStatus.ENABLE
                 }
             }
         }
@@ -56,5 +65,6 @@ class RegisterViewModel : ViewModel() {
 
     companion object {
         const val MAX_LENGTH_OF_USER_NAME = 12
+        const val BIRTH_YEAR_LENGTH = 4
     }
 }

@@ -4,14 +4,14 @@ import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.example.android_mvvm_template.R
 import com.example.android_mvvm_template.common.ext.exhaustive
-import com.example.android_mvvm_template.register.NicknameEnableStatus
+import com.example.android_mvvm_template.register.NicknameColorStatus
 
 @BindingAdapter("nicknameStatusForTextColor")
-fun TextView.setNicknameStatusForTextColor(status: NicknameEnableStatus?) {
+fun TextView.setNicknameStatusForTextColor(status: NicknameColorStatus?) {
     val textColorRes = when (status) {
-        NicknameEnableStatus.NORMAL, null -> R.color.silver
-        NicknameEnableStatus.ERROR -> R.color.martini
-        NicknameEnableStatus.ENABLE -> R.color.blue500
+        NicknameColorStatus.NORMAL, null -> R.color.silver
+        NicknameColorStatus.ERROR -> R.color.martini
+        NicknameColorStatus.ENABLE -> R.color.blue500
     }.exhaustive
     if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
         setTextColor(context.getColor(textColorRes))

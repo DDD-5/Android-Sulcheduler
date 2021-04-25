@@ -54,7 +54,7 @@
             android:text="@string/nickname"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/register_description"
-            app:nicknameStatusForTextColor="@{registerViewModel.nicknameEnableStatus}" />
+            app:nicknameStatusForTextColor="@{registerViewModel.nicknameColorStatus}" />
 
         <EditText
             android:id="@+id/nickname_input_field"
@@ -84,7 +84,7 @@
             app:layout_constraintBottom_toBottomOf="@id/nickname_input_field"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/nickname_input_field"
-            app:nicknameStatusForTextColor="@{registerViewModel.nicknameEnableStatus}" />
+            app:nicknameStatusForTextColor="@{registerViewModel.nicknameColorStatus}" />
 
         <View
             android:id="@+id/line"
@@ -93,7 +93,7 @@
             android:layout_marginTop="1.5dp"
             android:background="@color/alto"
             app:layout_constraintTop_toBottomOf="@id/nickname_input_field"
-            app:nicknameStatusForBackground="@{registerViewModel.nicknameEnableStatus}" />
+            app:nicknameStatusForBackground="@{registerViewModel.nicknameColorStatus}" />
 
         <TextView
             android:id="@+id/description"
@@ -182,9 +182,9 @@
         <com.google.android.material.radiobutton.MaterialRadioButton
             android:id="@+id/male_radio_button"
             android:layout_width="wrap_content"
-            android:checked="@{!registerViewModel.isFemale}"
             android:layout_height="wrap_content"
             android:buttonTint="@color/blue500"
+            android:checked="@{!registerViewModel.isFemale}"
             android:onClick="@{() -> registerViewModel.onClickGender(false)}"
             android:text="@string/male"
             app:layout_constraintStart_toStartOf="@id/middle_line_of_vertical"
@@ -194,7 +194,7 @@
             android:layout_width="match_parent"
             android:layout_height="54dp"
             android:layout_marginBottom="29dp"
-            android:backgroundTint="@color/blue500"
+            android:backgroundTint="@{registerViewModel.isOkButtonActive() ? @color/blue500 : @color/alto}"
             android:text="@string/ok"
             app:cornerRadius="12dp"
             app:layout_constraintBottom_toBottomOf="parent" />

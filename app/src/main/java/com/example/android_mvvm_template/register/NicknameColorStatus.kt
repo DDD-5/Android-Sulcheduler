@@ -1,5 +1,5 @@
 package com.example.android_mvvm_template.register
 
-enum class NicknameEnableStatus {
+enum class NicknameColorStatus {
     NORMAL, ERROR, ENABLE
 }
