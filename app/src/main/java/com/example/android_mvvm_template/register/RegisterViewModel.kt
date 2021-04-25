@@ -25,6 +25,13 @@ class RegisterViewModel : ViewModel() {
         initMediatorLiveData()
     }
 
+    fun onClickOkBtn() {
+        val nickname = nickname.value ?: return
+        val birthYear = birthYear.value ?: return
+        val isFemale = isFemale.value ?: return
+        // TODO API 연동
+    }
+
     fun onClickDuplicationCheckBtn() {
         if (nickname.value.isNullOrEmpty().not()) {
             // TODO API 연동

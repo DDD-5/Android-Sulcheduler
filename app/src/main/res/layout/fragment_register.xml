@@ -195,6 +195,7 @@
             android:layout_height="54dp"
             android:layout_marginBottom="29dp"
             android:backgroundTint="@{registerViewModel.isOkButtonActive() ? @color/blue500 : @color/alto}"
+            android:onClick="@{() -> registerViewModel.onClickOkBtn()}"
             android:text="@string/ok"
             app:cornerRadius="12dp"
             app:layout_constraintBottom_toBottomOf="parent" />
