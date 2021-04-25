@@ -53,7 +53,8 @@
             android:fontFamily="@font/roboto_medium"
             android:text="@string/nickname"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/register_description" />
+            app:layout_constraintTop_toBottomOf="@id/register_description"
+            app:nicknameStatusForTextColor="@{registerViewModel.nicknameEnableStatus}" />
 
         <EditText
             android:id="@+id/nickname_input_field"
@@ -64,6 +65,9 @@
             android:fontFamily="@font/roboto_regular"
             android:hint="@string/input_nickname"
             android:maxLength="12"
+            android:text="@={registerViewModel.nickname}"
+            android:textColor="@color/black"
+            android:textColorHint="@color/silver2"
             app:layout_constraintEnd_toStartOf="@+id/action_name"
             app:layout_constraintStart_toStartOf="@id/title_nickname"
             app:layout_constraintTop_toBottomOf="@id/title_nickname" />
@@ -73,12 +77,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/roboto_regular"
+            android:onClick="@{() -> registerViewModel.onClickDuplicationCheckBtn()}"
             android:padding="8dp"
             android:paddingEnd="0dp"
             android:text="@string/check_duplication"
             app:layout_constraintBottom_toBottomOf="@id/nickname_input_field"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/nickname_input_field" />
+            app:layout_constraintTop_toTopOf="@id/nickname_input_field"
+            app:nicknameStatusForTextColor="@{registerViewModel.nicknameEnableStatus}" />
 
         <View
             android:id="@+id/line"
@@ -86,7 +92,8 @@
             android:layout_height="1dp"
             android:layout_marginTop="1.5dp"
             android:background="@color/un_focused"
-            app:layout_constraintTop_toBottomOf="@id/nickname_input_field" />
+            app:layout_constraintTop_toBottomOf="@id/nickname_input_field"
+            app:nicknameStatusForBackground="@{registerViewModel.nicknameEnableStatus}" />
 
         <TextView
             android:id="@+id/description"
@@ -94,6 +101,8 @@
             android:layout_height="34dp"
             android:fontFamily="@font/roboto_regular"
             android:gravity="center_vertical"
+            android:text="@{registerViewModel.isNicknameDuplication() == null ? `` : registerViewModel.isNicknameDuplication() ? @string/error_nickname_duplication :  @string/success_nickname_duplication_check}"
+            android:textColor="@{registerViewModel.isNicknameDuplication() ? @color/input_error : @color/tundora}"
             android:textSize="12sp"
             app:layout_constraintEnd_toStartOf="@id/length_counter"
             app:layout_constraintStart_toStartOf="parent"
@@ -106,6 +115,7 @@
             android:layout_height="0dp"
             android:fontFamily="@font/roboto_regular"
             android:gravity="center_vertical"
+            android:text="@{registerViewModel.nicknameCountString}"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="@id/description"
             app:layout_constraintEnd_toEndOf="@id/line"
@@ -128,8 +138,11 @@
             android:layout_height="wrap_content"
             android:background="@{null}"
             android:fontFamily="@font/roboto_regular"
+            android:gravity="center_vertical"
             android:hint="@string/hint_of_birth_year"
             android:maxLength="12"
+            android:textColorHint="@color/silver2"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@id/title_birth"
             app:layout_constraintTop_toBottomOf="@id/title_birth" />
@@ -144,24 +157,13 @@
 
 
         <TextView
-            android:id="@+id/birth_length_counter"
-            android:layout_width="wrap_content"
-            android:layout_height="34dp"
-            android:fontFamily="@font/roboto_regular"
-            android:gravity="center_vertical"
-            android:textSize="12sp"
-            app:layout_constraintEnd_toEndOf="@id/birth_line"
-            app:layout_constraintTop_toBottomOf="@id/birth_line"
-            tools:text="0/12" />
-
-        <TextView
             android:id="@+id/gender_picker_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="33dp"
             android:text="@string/gender"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/birth_length_counter" />
+            app:layout_constraintTop_toBottomOf="@+id/birth_line" />
 
 
         <com.google.android.material.radiobutton.MaterialRadioButton

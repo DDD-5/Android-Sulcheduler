@@ -11,6 +11,7 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding, RegisterViewModel
     override fun initBinding(binding: FragmentRegisterBinding) {
         with(binding) {
             registerViewModel = viewModel
+            lifecycleOwner = viewLifecycleOwner
         }
     }
 

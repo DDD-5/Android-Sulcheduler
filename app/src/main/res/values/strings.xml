@@ -12,4 +12,6 @@
     <string name="ok">확인</string>
     <string name="birth_year">생년</string>
     <string name="hint_of_birth_year">1992년</string>
+    <string name="error_nickname_duplication">사용 중인 닉네임입니다.</string>
+    <string name="success_nickname_duplication_check">사용 가능한 닉네임입니다.</string>
 </resources>

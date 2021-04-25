@@ -10,4 +10,7 @@
     <color name="un_focused">#dcdcdc</color>
     <color name="input_error">#deff4646</color>
     <color name="active_blue">#1e50ff</color>
+    <color name="silver">#c8c8c8</color>
+    <color name="silver2">#dec8c8c8</color>
+    <color name="tundora">#de474747</color>
 </resources>
