@@ -6,16 +6,16 @@
 
     </data>
 
-    <FrameLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".FirstFragment">
 
-        <Button
-            android:id="@+id/button"
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="go to second fragment" />
-
-    </FrameLayout>
+            android:gravity="center"
+            android:text="intro"
+            android:textSize="20sp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
