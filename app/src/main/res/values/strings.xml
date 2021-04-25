@@ -10,4 +10,6 @@
     <string name="female">여성</string>
     <string name="male">남성</string>
     <string name="ok">확인</string>
+    <string name="birth_year">생년</string>
+    <string name="hint_of_birth_year">1992년</string>
 </resources>
