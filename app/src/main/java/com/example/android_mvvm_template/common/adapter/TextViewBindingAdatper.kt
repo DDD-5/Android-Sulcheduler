@@ -10,8 +10,8 @@ import com.example.android_mvvm_template.register.NicknameEnableStatus
 fun TextView.setNicknameStatusForTextColor(status: NicknameEnableStatus?) {
     val textColorRes = when (status) {
         NicknameEnableStatus.NORMAL, null -> R.color.silver
-        NicknameEnableStatus.ERROR -> R.color.input_error
-        NicknameEnableStatus.ENABLE -> R.color.active_blue
+        NicknameEnableStatus.ERROR -> R.color.martini
+        NicknameEnableStatus.ENABLE -> R.color.blue500
     }.exhaustive
     if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
         setTextColor(context.getColor(textColorRes))

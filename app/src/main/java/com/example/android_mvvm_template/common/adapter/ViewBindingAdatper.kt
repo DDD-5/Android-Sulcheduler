@@ -9,9 +9,9 @@ import com.example.android_mvvm_template.register.NicknameEnableStatus
 @BindingAdapter("nicknameStatusForBackground")
 fun View.setNicknameStatusForBackground(status: NicknameEnableStatus?) {
     val backgroundColorRes = when (status) {
-        NicknameEnableStatus.NORMAL, null -> R.color.un_focused
-        NicknameEnableStatus.ERROR -> R.color.input_error
-        NicknameEnableStatus.ENABLE -> R.color.active_blue
+        NicknameEnableStatus.NORMAL, null -> R.color.alto
+        NicknameEnableStatus.ERROR -> R.color.coral_red_alpha_87
+        NicknameEnableStatus.ENABLE -> R.color.blue500
     }.exhaustive
     setBackgroundResource(backgroundColorRes)
 }

@@ -67,7 +67,7 @@
             android:maxLength="12"
             android:text="@={registerViewModel.nickname}"
             android:textColor="@color/black"
-            android:textColorHint="@color/silver2"
+            android:textColorHint="@color/silver_alpha_87"
             app:layout_constraintEnd_toStartOf="@+id/action_name"
             app:layout_constraintStart_toStartOf="@id/title_nickname"
             app:layout_constraintTop_toBottomOf="@id/title_nickname" />
@@ -91,7 +91,7 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginTop="1.5dp"
-            android:background="@color/un_focused"
+            android:background="@color/alto"
             app:layout_constraintTop_toBottomOf="@id/nickname_input_field"
             app:nicknameStatusForBackground="@{registerViewModel.nicknameEnableStatus}" />
 
@@ -102,7 +102,7 @@
             android:fontFamily="@font/roboto_regular"
             android:gravity="center_vertical"
             android:text="@{registerViewModel.isNicknameDuplication() == null ? `` : registerViewModel.isNicknameDuplication() ? @string/error_nickname_duplication :  @string/success_nickname_duplication_check}"
-            android:textColor="@{registerViewModel.isNicknameDuplication() ? @color/input_error : @color/tundora}"
+            android:textColor="@{registerViewModel.isNicknameDuplication() ? @color/coral_red_alpha_87 : @color/tundora}"
             android:textSize="12sp"
             app:layout_constraintEnd_toStartOf="@id/length_counter"
             app:layout_constraintStart_toStartOf="parent"
@@ -140,8 +140,10 @@
             android:fontFamily="@font/roboto_regular"
             android:gravity="center_vertical"
             android:hint="@string/hint_of_birth_year"
-            android:maxLength="12"
-            android:textColorHint="@color/silver2"
+            android:inputType="number"
+            android:maxLength="4"
+            android:text="@={registerViewModel.birthYear}"
+            android:textColorHint="@color/silver_alpha_87"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@id/title_birth"
@@ -151,7 +153,7 @@
             android:id="@+id/birth_line"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/un_focused"
+            android:background="@color/alto"
             app:layout_constraintTop_toBottomOf="@+id/birth_field"
             tools:layout_editor_absoluteX="20dp" />
 
@@ -165,12 +167,11 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/birth_line" />
 
-
         <com.google.android.material.radiobutton.MaterialRadioButton
             android:id="@+id/female_radio_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:buttonTint="@color/active_blue"
+            android:buttonTint="@color/blue500"
             android:text="@string/female"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/gender_picker_title"
@@ -180,7 +181,7 @@
             android:id="@+id/male_radio_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:buttonTint="@color/active_blue"
+            android:buttonTint="@color/blue500"
             android:text="@string/male"
             app:layout_constraintStart_toStartOf="@id/middle_line_of_vertical"
             app:layout_constraintTop_toBottomOf="@id/gender_picker_title" />
@@ -189,7 +190,7 @@
             android:layout_width="match_parent"
             android:layout_height="54dp"
             android:layout_marginBottom="29dp"
-            android:backgroundTint="@color/active_blue"
+            android:backgroundTint="@color/blue500"
             android:text="@string/ok"
             app:cornerRadius="12dp"
             app:layout_constraintBottom_toBottomOf="parent" />
