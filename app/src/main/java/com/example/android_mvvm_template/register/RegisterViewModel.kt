@@ -1,34 +1,29 @@
 package com.example.android_mvvm_template.register
 
-import androidx.core.text.isDigitsOnly
 import androidx.lifecycle.*
 
 class RegisterViewModel : ViewModel() {
     val nickname = MutableLiveData("")
+
     val nicknameCountString = nickname.map {
         "${it.count()}/$MAX_LENGTH_OF_USER_NAME"
     }
 
+    val nicknameEnableStatus = MediatorLiveData<NicknameEnableStatus>()
+
     val birthYear = MutableLiveData<String>()
-    val isBirthYearHasOnlyDigit: Boolean
-        get() = birthYear.value?.isDigitsOnly() == true
 
     private val _isNicknameDuplication = MutableLiveData<Boolean?>()
     val isNicknameDuplication: LiveData<Boolean?> = _isNicknameDuplication
 
-    val nicknameEnableStatus = MediatorLiveData<NicknameEnableStatus>()
+    private val _isFemale = MutableLiveData(true)
+    val isFemale: LiveData<Boolean> = _isFemale
+
 
     init {
         initMediatorLiveData()
     }
 
-    fun appendTextToBirthYear(text: String) {
-        birthYear.value = birthYear.value?.plus(text)
-    }
-
-    fun onFocusBirthYear() {
-        birthYear.value = birthYear.value?.filter { it.isDigit() }
-    }
 
     fun onClickDuplicationCheckBtn() {
         if (nickname.value.isNullOrEmpty().not()) {
@@ -37,7 +32,8 @@ class RegisterViewModel : ViewModel() {
         }
     }
 
-    fun onBirthYearChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+    fun onClickGender(isClickFemale: Boolean) {
+        _isFemale.value = isClickFemale
     }
 
     private fun initMediatorLiveData() {

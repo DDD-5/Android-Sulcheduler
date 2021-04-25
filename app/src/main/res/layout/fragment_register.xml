@@ -172,6 +172,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:buttonTint="@color/blue500"
+            android:checked="@{registerViewModel.isFemale}"
+            android:onClick="@{() -> registerViewModel.onClickGender(true)}"
             android:text="@string/female"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/gender_picker_title"
@@ -180,8 +182,10 @@
         <com.google.android.material.radiobutton.MaterialRadioButton
             android:id="@+id/male_radio_button"
             android:layout_width="wrap_content"
+            android:checked="@{!registerViewModel.isFemale}"
             android:layout_height="wrap_content"
             android:buttonTint="@color/blue500"
+            android:onClick="@{() -> registerViewModel.onClickGender(false)}"
             android:text="@string/male"
             app:layout_constraintStart_toStartOf="@id/middle_line_of_vertical"
             app:layout_constraintTop_toBottomOf="@id/gender_picker_title" />
