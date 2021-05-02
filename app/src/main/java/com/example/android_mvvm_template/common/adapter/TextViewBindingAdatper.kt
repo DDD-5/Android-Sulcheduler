@@ -19,3 +19,16 @@ fun TextView.setNicknameStatusForTextColor(status: NicknameColorStatus?) {
         setTextColor(context.resources.getColor(textColorRes))
     }
 }
+
+@BindingAdapter("isNicknameDuplication")
+fun TextView.setIsNicknameDuplication(isDuplicated: Boolean?) {
+    text = if (isDuplicated != null) {
+        if (isDuplicated) {
+            context.getString(R.string.error_nickname_duplication)
+        } else {
+            context.getString(R.string.success_nickname_duplication_check)
+        }
+    } else {
+        ""
+    }
+}
