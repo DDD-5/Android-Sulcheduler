@@ -13,7 +13,6 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(R.layout.a
 
     override fun initBinding(binding: ActivityMainBinding) {
         binding.run {
-            lifecycleOwner = this@MainActivity
         }
     }
 

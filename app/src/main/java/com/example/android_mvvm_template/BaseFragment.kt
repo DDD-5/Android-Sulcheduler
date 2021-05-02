@@ -13,11 +13,12 @@ abstract class BaseFragment<B : ViewDataBinding, VM : ViewModel>(layoutRes: Int)
 
     private lateinit var binding: B
 
-    abstract fun onViewCreated(binding: B, savedInstanceState: Bundle?)
 
     abstract fun initBinding(binding: B)
 
     abstract fun subscribeViewModel(viewModel: VM)
+
+    open fun onViewCreated(binding: B, savedInstanceState: Bundle?) {}
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="registerViewModel"
+            type="com.example.android_mvvm_template.register.RegisterViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingHorizontal="20dp"
+        tools:context=".SecondFragment">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/middle_line_of_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5" />
+
+        <TextView
+            android:id="@+id/register_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="80dp"
+            android:fontFamily="@font/roboto_bold"
+            android:text="@string/input_required_info"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/register_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_regular"
+            android:text="@string/register_description"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="@id/register_title"
+            app:layout_constraintTop_toBottomOf="@id/register_title" />
+
+        <TextView
+            android:id="@+id/title_nickname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="43dp"
+            android:fontFamily="@font/roboto_medium"
+            android:text="@string/nickname"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/register_description"
+            app:nicknameStatusForTextColor="@{registerViewModel.nicknameColorStatus}" />
+
+        <EditText
+            android:id="@+id/nickname_input_field"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:background="@{null}"
+            android:fontFamily="@font/roboto_regular"
+            android:hint="@string/input_nickname"
+            android:maxLength="12"
+            android:text="@={registerViewModel.nickname}"
+            android:textColor="@color/black"
+            android:textColorHint="@color/silver_alpha_87"
+            app:layout_constraintEnd_toStartOf="@+id/action_name"
+            app:layout_constraintStart_toStartOf="@id/title_nickname"
+            app:layout_constraintTop_toBottomOf="@id/title_nickname" />
+
+        <TextView
+            android:id="@+id/action_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_regular"
+            android:onClick="@{() -> registerViewModel.onClickDuplicationCheckBtn()}"
+            android:padding="8dp"
+            android:paddingEnd="0dp"
+            android:text="@string/check_duplication"
+            app:layout_constraintBottom_toBottomOf="@id/nickname_input_field"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/nickname_input_field"
+            app:nicknameStatusForTextColor="@{registerViewModel.nicknameColorStatus}" />
+
+        <View
+            android:id="@+id/line"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="1.5dp"
+            android:background="@color/alto"
+            app:layout_constraintTop_toBottomOf="@id/nickname_input_field"
+            app:nicknameStatusForBackground="@{registerViewModel.nicknameColorStatus}" />
+
+        <TextView
+            android:id="@+id/description"
+            android:layout_width="0dp"
+            android:layout_height="34dp"
+            android:fontFamily="@font/roboto_regular"
+            android:gravity="center_vertical"
+            isNicknameDuplication="@{registerViewModel.isNicknameDuplication}"
+            android:textColor="@{registerViewModel.isNicknameDuplication ? @color/coral_red_alpha_87 : @color/tundora}"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toStartOf="@id/length_counter"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/line"
+            tools:text="사용 중인 닉네임입니다." />
+
+        <TextView
+            android:id="@+id/length_counter"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:fontFamily="@font/roboto_regular"
+            android:gravity="center_vertical"
+            android:text="@{registerViewModel.nicknameCountString}"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@id/description"
+            app:layout_constraintEnd_toEndOf="@id/line"
+            app:layout_constraintTop_toTopOf="@id/description"
+            tools:text="0/12" />
+
+        <TextView
+            android:id="@+id/title_birth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:fontFamily="@font/roboto_medium"
+            android:text="@string/birth_year"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/length_counter" />
+
+        <EditText
+            android:id="@+id/birth_field"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@{null}"
+            android:fontFamily="@font/roboto_regular"
+            android:gravity="center_vertical"
+            android:hint="@string/hint_of_birth_year"
+            android:inputType="number"
+            android:maxLength="4"
+            android:text="@={registerViewModel.birthYear}"
+            android:textColorHint="@color/silver_alpha_87"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/title_birth"
+            app:layout_constraintTop_toBottomOf="@id/title_birth" />
+
+        <View
+            android:id="@+id/birth_line"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/alto"
+            app:layout_constraintTop_toBottomOf="@+id/birth_field"
+            tools:layout_editor_absoluteX="20dp" />
+
+
+        <TextView
+            android:id="@+id/gender_picker_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="33dp"
+            android:text="@string/gender"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/birth_line" />
+
+        <com.google.android.material.radiobutton.MaterialRadioButton
+            android:id="@+id/female_radio_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/blue500"
+            android:checked="@{registerViewModel.isFemale}"
+            android:onClick="@{() -> registerViewModel.onClickGender(true)}"
+            android:text="@string/female"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/gender_picker_title"
+            tools:checked="true" />
+
+        <com.google.android.material.radiobutton.MaterialRadioButton
+            android:id="@+id/male_radio_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/blue500"
+            android:checked="@{!registerViewModel.isFemale}"
+            android:onClick="@{() -> registerViewModel.onClickGender(false)}"
+            android:text="@string/male"
+            app:layout_constraintStart_toStartOf="@id/middle_line_of_vertical"
+            app:layout_constraintTop_toBottomOf="@id/gender_picker_title" />
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="match_parent"
+            android:layout_height="54dp"
+            android:layout_marginBottom="29dp"
+            android:backgroundTint="@{registerViewModel.isOkButtonActive() ? @color/blue500 : @color/alto}"
+            android:onClick="@{() -> registerViewModel.onClickOkBtn()}"
+            android:text="@string/ok"
+            app:cornerRadius="12dp"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
