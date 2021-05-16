@@ -1,6 +1,7 @@
 package com.example.android_mvvm_template
 
 import android.app.Application
+import com.example.android_mvvm_template.di.getHomeModule
 import com.example.android_mvvm_template.di.getNetworkModule
 import com.example.android_mvvm_template.di.getPresentationModule
 import com.orhanobut.logger.AndroidLogAdapter
@@ -20,7 +21,8 @@ class MyApplication : Application() {
             modules(
                 listOf(
                     getNetworkModule("www.example.com"),
-                    getPresentationModule()
+                    getPresentationModule(),
+                    getHomeModule()
                 )
             )
         }

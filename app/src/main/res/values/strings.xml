@@ -15,4 +15,16 @@
     <string name="error_nickname_duplication">사용 중인 닉네임입니다.</string>
     <string name="success_nickname_duplication_check">사용 가능한 닉네임입니다.</string>
     <string name="year">년</string>
+
+
+    <!--  Home  -->
+    <string name="home_title">예정된 술케줄을\n확인해보세요.</string>
+    <string name="home_sunday">일</string>
+    <string name="home_monday">월</string>
+    <string name="home_tuesday">화</string>
+    <string name="home_wednesday">수</string>
+    <string name="home_thursday">목</string>
+    <string name="home_friday">금</string>
+    <string name="home_saturday">토</string>
+    <string name="month_title">%d년 %d월</string>
 </resources>
