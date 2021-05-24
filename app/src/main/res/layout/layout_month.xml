@@ -1,0 +1,633 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingHorizontal="25dp"
+    tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout">
+
+    <TextView
+        android:id="@+id/monthly_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="8dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="2020년 6월" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/dayTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingVertical="14dp"
+        app:layout_constraintTop_toBottomOf="@id/monthly_title">
+
+        <TextView
+            android:id="@+id/sun"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/home_sunday"
+            app:layout_constraintEnd_toStartOf="@id/mon"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/mon"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/home_monday"
+            app:layout_constraintEnd_toStartOf="@id/tue"
+            app:layout_constraintStart_toEndOf="@id/sun" />
+
+        <TextView
+            android:id="@+id/tue"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/home_tuesday"
+            app:layout_constraintEnd_toStartOf="@id/wed"
+            app:layout_constraintStart_toEndOf="@id/mon" />
+
+        <TextView
+            android:id="@+id/wed"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/home_wednesday"
+            app:layout_constraintEnd_toStartOf="@id/thu"
+            app:layout_constraintStart_toEndOf="@id/tue" />
+
+        <TextView
+            android:id="@+id/thu"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/home_thursday"
+            app:layout_constraintEnd_toStartOf="@id/fri"
+            app:layout_constraintStart_toEndOf="@id/wed" />
+
+        <TextView
+            android:id="@+id/fri"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/home_friday"
+            app:layout_constraintEnd_toStartOf="@id/sat"
+            app:layout_constraintStart_toEndOf="@id/thu" />
+
+        <TextView
+            android:id="@+id/sat"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/home_saturday"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/fri" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!--  1 week   -->
+    <com.example.android_mvvm_template.home.DayView
+        android:id="@+id/day1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="14dp"
+        android:gravity="center"
+        android:minHeight="48dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/day2"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dayTitle"
+        tools:text="1" />
+
+    <com.example.android_mvvm_template.home.DayView
+        android:id="@+id/day2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:minHeight="48dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/day3"
+        app:layout_constraintStart_toEndOf="@+id/day1"
+        app:layout_constraintTop_toTopOf="@id/day1"
+        tools:text="1" />
+
+    <com.example.android_mvvm_template.home.DayView
+        android:id="@+id/day3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:minHeight="48dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/day4"
+        app:layout_constraintStart_toEndOf="@+id/day2"
+        app:layout_constraintTop_toTopOf="@id/day1"
+        tools:text="1" />
+
+    <com.example.android_mvvm_template.home.DayView
+        android:id="@+id/day4"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:minHeight="48dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/day5"
+        app:layout_constraintStart_toEndOf="@+id/day3"
+        app:layout_constraintTop_toTopOf="@id/day1"
+        tools:text="1" />
+
+    <com.example.android_mvvm_template.home.DayView
+        android:id="@+id/day5"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:minHeight="48dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/day6"
+        app:layout_constraintStart_toEndOf="@+id/day4"
+        app:layout_constraintTop_toTopOf="@id/day1"
+        tools:text="1" />
+
+    <com.example.android_mvvm_template.home.DayView
+        android:id="@+id/day6"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:minHeight="48dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/day7"
+        app:layout_constraintStart_toEndOf="@+id/day5"
+        app:layout_constraintTop_toTopOf="@id/day1"
+        tools:text="1" />
+
+    <com.example.android_mvvm_template.home.DayView
+        android:id="@+id/day7"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="1dp"
+        android:gravity="center"
+        android:minHeight="48dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/day6"
+        app:layout_constraintTop_toTopOf="@id/day1"
+        tools:text="1" />
+
+    <!--  2 week   -->
+    <com.example.android_mvvm_template.home.DayView
+        android:id="@+id/day8"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:gravity="center"
+        android:minHeight="48dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/day2"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="@id/day1"
+        app:layout_constraintTop_toBottomOf="@+id/day1"
+        tools:text="1" />
+
+    <com.example.android_mvvm_template.home.DayView
+        android:id="@+id/day9"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:minHeight="48dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/day3"
+        app:layout_constraintStart_toEndOf="@+id/day1"
+        app:layout_constraintTop_toTopOf="@id/day8"
+        tools:text="1" />
+
+    <com.example.android_mvvm_template.home.DayView
+        android:id="@+id/day10"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:minHeight="48dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/day4"
+        app:layout_constraintStart_toEndOf="@+id/day2"
+        app:layout_constraintTop_toTopOf="@id/day8"
+        tools:text="1" />
+
+    <com.example.android_mvvm_template.home.DayView
+        android:id="@+id/day11"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:minHeight="48dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/day5"
+        app:layout_constraintStart_toEndOf="@+id/day3"
+        app:layout_constraintTop_toTopOf="@id/day8"
+        tools:text="1" />
+
+    <com.example.android_mvvm_template.home.DayView
+        android:id="@+id/day12"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:minHeight="48dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/day6"
+        app:layout_constraintStart_toEndOf="@+id/day4"
+        app:layout_constraintTop_toTopOf="@id/day8"
+        tools:text="1" />
+
+    <com.example.android_mvvm_template.home.DayView
+        android:id="@+id/day13"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:minHeight="48dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/day7"
+        app:layout_constraintStart_toEndOf="@+id/day5"
+        app:layout_constraintTop_toTopOf="@id/day8"
+        tools:text="1" />
+
+    <com.example.android_mvvm_template.home.DayView
+        android:id="@+id/day14"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:minHeight="48dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@id/day7"
+        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintStart_toEndOf="@+id/day6"
+        app:layout_constraintTop_toTopOf="@id/day8"
+        tools:text="1" />
+
+    <!--  3 week   -->
+    <com.example.android_mvvm_template.home.DayView
+        android:id="@+id/day15"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:gravity="center"
+        android:minHeight="48dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/day2"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="@id/day1"
+        app:layout_constraintTop_toBottomOf="@+id/day8"
+        tools:text="1" />
+
+    <com.example.android_mvvm_template.home.DayView
+        android:id="@+id/day16"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:minHeight="48dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/day3"
+        app:layout_constraintStart_toEndOf="@+id/day1"
+        app:layout_constraintTop_toTopOf="@+id/day15"
+        tools:text="1" />
+
+    <com.example.android_mvvm_template.home.DayView
+        android:id="@+id/day17"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:minHeight="48dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/day4"
+        app:layout_constraintStart_toEndOf="@+id/day2"
+        app:layout_constraintTop_toTopOf="@+id/day15"
+        tools:text="1" />
+
+    <com.example.android_mvvm_template.home.DayView
+        android:id="@+id/day18"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:minHeight="48dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/day5"
+        app:layout_constraintStart_toEndOf="@+id/day3"
+        app:layout_constraintTop_toTopOf="@+id/day15"
+        tools:text="1" />
+
+    <com.example.android_mvvm_template.home.DayView
+        android:id="@+id/day19"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:minHeight="48dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/day6"
+        app:layout_constraintStart_toEndOf="@+id/day4"
+        app:layout_constraintTop_toTopOf="@+id/day15"
+        tools:text="1" />
+
+    <com.example.android_mvvm_template.home.DayView
+        android:id="@+id/day20"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:minHeight="48dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/day7"
+        app:layout_constraintStart_toEndOf="@+id/day5"
+        app:layout_constraintTop_toTopOf="@+id/day15"
+        tools:text="1" />
+
+    <com.example.android_mvvm_template.home.DayView
+        android:id="@+id/day21"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:minHeight="48dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@id/day7"
+        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintStart_toEndOf="@+id/day6"
+        app:layout_constraintTop_toTopOf="@+id/day15"
+        tools:text="1" />
+
+    <!--  4 week   -->
+    <com.example.android_mvvm_template.home.DayView
+        android:id="@+id/day22"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:gravity="center"
+        android:minHeight="48dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/day2"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="@id/day1"
+        app:layout_constraintTop_toBottomOf="@+id/day15"
+        app:layout_goneMarginTop="16dp"
+        tools:text="1" />
+
+    <com.example.android_mvvm_template.home.DayView
+        android:id="@+id/day23"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:minHeight="48dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/day3"
+        app:layout_constraintStart_toEndOf="@+id/day1"
+        app:layout_constraintTop_toTopOf="@+id/day22"
+        tools:text="1" />
+
+    <com.example.android_mvvm_template.home.DayView
+        android:id="@+id/day24"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:minHeight="48dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/day4"
+        app:layout_constraintStart_toEndOf="@+id/day2"
+        app:layout_constraintTop_toTopOf="@+id/day22"
+        tools:text="1" />
+
+    <com.example.android_mvvm_template.home.DayView
+        android:id="@+id/day25"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:minHeight="48dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/day5"
+        app:layout_constraintStart_toEndOf="@+id/day3"
+        app:layout_constraintTop_toTopOf="@+id/day22"
+        tools:text="1" />
+
+    <com.example.android_mvvm_template.home.DayView
+        android:id="@+id/day26"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:minHeight="48dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/day6"
+        app:layout_constraintStart_toEndOf="@+id/day4"
+        app:layout_constraintTop_toTopOf="@+id/day22"
+        tools:text="1" />
+
+    <com.example.android_mvvm_template.home.DayView
+        android:id="@+id/day27"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:minHeight="48dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/day7"
+        app:layout_constraintStart_toEndOf="@+id/day5"
+        app:layout_constraintTop_toTopOf="@+id/day22"
+        tools:text="1" />
+
+    <com.example.android_mvvm_template.home.DayView
+        android:id="@+id/day28"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:minHeight="48dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@id/day7"
+        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintStart_toEndOf="@+id/day6"
+        app:layout_constraintTop_toTopOf="@+id/day22"
+        tools:text="1" />
+
+    <!--  5 week   -->
+    <com.example.android_mvvm_template.home.DayView
+        android:id="@+id/day29"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:gravity="center"
+        android:minHeight="48dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/day2"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="@id/day1"
+        app:layout_constraintTop_toBottomOf="@+id/day27"
+        tools:text="1" />
+
+    <com.example.android_mvvm_template.home.DayView
+        android:id="@+id/day30"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:minHeight="48dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/day3"
+        app:layout_constraintStart_toEndOf="@+id/day1"
+        app:layout_constraintTop_toTopOf="@+id/day29"
+        tools:text="1" />
+
+    <com.example.android_mvvm_template.home.DayView
+        android:id="@+id/day31"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:minHeight="48dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/day4"
+        app:layout_constraintStart_toEndOf="@+id/day2"
+        app:layout_constraintTop_toTopOf="@+id/day29"
+        tools:text="1" />
+
+    <com.example.android_mvvm_template.home.DayView
+        android:id="@+id/day32"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:minHeight="48dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/day5"
+        app:layout_constraintStart_toEndOf="@+id/day3"
+        app:layout_constraintTop_toTopOf="@+id/day29"
+        tools:text="1" />
+
+    <com.example.android_mvvm_template.home.DayView
+        android:id="@+id/day33"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:minHeight="48dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/day6"
+        app:layout_constraintStart_toEndOf="@+id/day4"
+        app:layout_constraintTop_toTopOf="@+id/day29"
+        tools:text="1" />
+
+    <com.example.android_mvvm_template.home.DayView
+        android:id="@+id/day34"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:minHeight="48dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/day7"
+        app:layout_constraintStart_toEndOf="@+id/day5"
+        app:layout_constraintTop_toTopOf="@+id/day29"
+        tools:text="1" />
+
+    <com.example.android_mvvm_template.home.DayView
+        android:id="@+id/day35"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:minHeight="48dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@id/day7"
+        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintStart_toEndOf="@+id/day6"
+        app:layout_constraintTop_toTopOf="@+id/day29"
+        tools:text="1" />
+
+    <!--  6 week   -->
+    <com.example.android_mvvm_template.home.DayView
+        android:id="@+id/day36"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:gravity="center"
+        android:minHeight="48dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/day2"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="@id/day1"
+        app:layout_constraintTop_toBottomOf="@+id/day29"
+        tools:text="1" />
+
+    <com.example.android_mvvm_template.home.DayView
+        android:id="@+id/day37"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:minHeight="48dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/day3"
+        app:layout_constraintStart_toEndOf="@+id/day1"
+        app:layout_constraintTop_toTopOf="@+id/day36"
+        tools:text="1" />
+
+    <com.example.android_mvvm_template.home.DayView
+        android:id="@+id/day38"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:minHeight="48dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/day4"
+        app:layout_constraintStart_toEndOf="@+id/day2"
+        app:layout_constraintTop_toTopOf="@+id/day36"
+        tools:text="1" />
+
+    <com.example.android_mvvm_template.home.DayView
+        android:id="@+id/day39"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:minHeight="48dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/day5"
+        app:layout_constraintStart_toEndOf="@+id/day3"
+        app:layout_constraintTop_toTopOf="@+id/day36"
+        tools:text="1" />
+
+    <com.example.android_mvvm_template.home.DayView
+        android:id="@+id/day40"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:minHeight="48dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/day6"
+        app:layout_constraintStart_toEndOf="@+id/day4"
+        app:layout_constraintTop_toTopOf="@+id/day36"
+        tools:text="1" />
+
+    <com.example.android_mvvm_template.home.DayView
+        android:id="@+id/day41"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:minHeight="48dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/day7"
+        app:layout_constraintStart_toEndOf="@+id/day5"
+        app:layout_constraintTop_toTopOf="@+id/day36"
+        tools:text="1" />
+
+    <com.example.android_mvvm_template.home.DayView
+        android:id="@+id/day42"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:minHeight="48dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@id/day7"
+        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintStart_toEndOf="@+id/day6"
+        app:layout_constraintTop_toTopOf="@+id/day36"
+        tools:text="1" />
+
+    <View
+        android:id="@+id/month_divider"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginTop="14dp"
+        android:backgroundTintMode="src_atop"
+        app:layout_constraintTop_toBottomOf="@+id/day42" />
+
+</merge>

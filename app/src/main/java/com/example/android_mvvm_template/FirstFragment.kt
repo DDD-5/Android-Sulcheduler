@@ -14,14 +14,18 @@ class FirstFragment : BaseFragment<FragmentFirstBinding, MainViewModel>(R.layout
 
     override fun onViewCreated(binding: FragmentFirstBinding, savedInstanceState: Bundle?) {
         lifecycleScope.launch {
-            delay(1000L)
-            val action = FirstFragmentDirections.actionFirstFragmentToRegisterFragment()
-            findNavController().navigate(action)
+//            delay(1000L)
+//            val action = FirstFragmentDirections.actionFirstFragmentToRegisterFragment()
+//            findNavController().navigate(action)
         }
     }
 
     override fun initBinding(binding: FragmentFirstBinding) {
         binding.run {
+            button.setOnClickListener {
+                val action = FirstFragmentDirections.actionFirstFragmentToHomeFragment()
+                findNavController().navigate(action)
+            }
         }
     }
 
