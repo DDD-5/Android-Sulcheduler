@@ -30,7 +30,7 @@ class MonthView @JvmOverloads constructor(
             true
         ).run {
             monthTitle = this.findViewById(R.id.monthly_title)
-            for (i in 1..childCount - 2) {
+            for (i in 2..childCount - 2) {
                 getChildAt(i).setOnClickListener {
                     getClickableDayLocalDate(i)?.let { date ->
                         dayClickListener?.invoke(date)
@@ -66,8 +66,8 @@ class MonthView @JvmOverloads constructor(
         var day = 1
 
         //해당 달의 1일 전까지 dayView empty bind
-        for (i in 1..startDayOfWeek) {
-            (getChildAt(i) as DayView).run {
+        for (i in 2..startDayOfWeek + 1) { // 요일 viewGroup 때문에 항상 + 1
+            (getChildAt(i) as? DayView)?.run {
                 bindDummyDay(
                     day = EMPTY_DAY,
                     isRange = isRangeDummyView(1, startSelect, endSelect)
@@ -76,13 +76,14 @@ class MonthView @JvmOverloads constructor(
         }
 
         //해당 달의 1일 ~ 마지막 일 까지 bind
-        for (i in startDayOfWeek until startDayOfWeek + lastDay) {
-            (getChildAt(i) as DayView).run {
+        for (i in startDayOfWeek + 1 until startDayOfWeek + lastDay + 1) {
+            (getChildAt(i) as? DayView)?.run {
                 val now = startMonthDate.withDayOfMonth(day)
                 bindDay(
                     day = day,
-                    dayOfWeek = geyDayOfWeek(i),
+                    dayOfWeek = geyDayOfWeek(i - 1),
                     isSelect = isSelect(day, startSelect, endSelect),
+                    reserved = entity.reservedList.contains(day),
                     isRange = isRange(now, startSelect, endSelect),
                     isValidDay = isValidDay(day++)
                 )
@@ -90,8 +91,8 @@ class MonthView @JvmOverloads constructor(
         }
 
         //해당 달의 마지막 일의 다음날 부터 주의 끝까지 empty bind
-        for (i in startDayOfWeek + lastDay until startDayOfWeek + lastDay + (7 - endDayOfWeek)) {
-            (getChildAt(i) as DayView).run {
+        for (i in startDayOfWeek + lastDay + 1 until startDayOfWeek + lastDay + (7 - endDayOfWeek) + 1) {
+            (getChildAt(i) as? DayView)?.run {
                 bindDummyDay(
                     day = EMPTY_DAY,
                     isRange = isRangeDummyView(lastDay, startSelect, endSelect)
@@ -100,8 +101,8 @@ class MonthView @JvmOverloads constructor(
         }
 
         //필요 없는 나머지 DayView Gone
-        for (i in startDayOfWeek + lastDay + (7 - endDayOfWeek)..42) {
-            (getChildAt(i) as DayView).run {
+        for (i in startDayOfWeek + lastDay + (7 - endDayOfWeek) + 1..43) {
+            (getChildAt(i) as? DayView)?.run {
                 bindDummyDay(
                     day = HIDE_DAY,
                     isRange = false
@@ -120,9 +121,7 @@ class MonthView @JvmOverloads constructor(
                 dayView.text.toString().let {
                     if (it.isNotEmpty()) {
                         val day = Integer.valueOf(dayView.text.toString())
-                        if (isValidDay(day)) {
-                            return LocalDate.of(startMonthDate.year, startMonthDate.monthValue, day)
-                        }
+                        return LocalDate.of(startMonthDate.year, startMonthDate.monthValue, day)
                     }
                 }
             }

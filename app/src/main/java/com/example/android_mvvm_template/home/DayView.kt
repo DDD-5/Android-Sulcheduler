@@ -9,11 +9,13 @@ import android.graphics.Typeface
 import android.text.TextPaint
 import android.util.AttributeSet
 import android.view.Gravity
+import androidx.core.content.ContextCompat
+import com.example.android_mvvm_template.R
 import com.example.android_mvvm_template.home.MonthView.Companion.EMPTY_DAY
-import com.example.android_mvvm_template.home.MonthView.Companion.END_SELECT
 import com.example.android_mvvm_template.home.MonthView.Companion.HIDE_DAY
 import com.example.android_mvvm_template.home.MonthView.Companion.NONE_SELECT
-import com.example.android_mvvm_template.home.MonthView.Companion.START_SELECT
+import com.example.android_mvvm_template.home.MonthView.Companion.SATURDAY
+import com.example.android_mvvm_template.home.MonthView.Companion.SUNDAY
 import com.example.android_mvvm_template.util.toPx
 
 class DayView @JvmOverloads constructor(
@@ -32,7 +34,7 @@ class DayView @JvmOverloads constructor(
 
     private val selectPaint: Paint by lazy {
         Paint().apply {
-            color = Color.parseColor("#444b52")
+            color = ContextCompat.getColor(context, R.color.blue500)
             isAntiAlias = true
             style = Paint.Style.FILL
         }
@@ -47,10 +49,20 @@ class DayView @JvmOverloads constructor(
         }
     }
 
+    private val reservationPaint: Paint by lazy {
+        Paint().apply {
+            color = ContextCompat.getColor(context, R.color.blue500)
+            isAntiAlias = true
+            style = Paint.Style.STROKE
+            strokeWidth = 1.toPx(context).toFloat()
+        }
+    }
+
     private var subTitle: String = ""
 
     private var isRange: Boolean = false
     private var isSelect: Int = NONE_SELECT
+    private var reserved: Boolean = false
     private val rect = Rect()
 
     init {
@@ -87,32 +99,31 @@ class DayView @JvmOverloads constructor(
                 subTitleTextPaint)
         }
 
-        if (isRange.not() && isSelect == NONE_SELECT) {
-            super.onDraw(canvas)
-            return
-        }
-
         val diameter = (width - 12.toPx(context).toFloat())
 
         if (isSelect != NONE_SELECT) {
             val radius = diameter / 2
             val cx = (width / 2).toFloat()
-            canvas.drawCircle(cx, radius, radius, selectPaint)
+            canvas.drawCircle(cx, radius, radius - 1, selectPaint)
+        } else if(reserved && text.isNotEmpty()) {
+            val radius = diameter / 2
+            val cx = (width / 2).toFloat()
+            canvas.drawCircle(cx, radius, radius - 1, reservationPaint)
         }
 
         super.onDraw(canvas)
     }
 
 
-    fun bindDay(day: Int, dayOfWeek: Int, isSelect: Int, isRange: Boolean, isValidDay: Boolean, subTitle: String = "") {
+    fun bindDay(day: Int, dayOfWeek: Int, isSelect: Int, isRange: Boolean, reserved: Boolean, isValidDay: Boolean, subTitle: String = "") {
 
         visibility = VISIBLE
-        text = day.toString()
-        setDayTextColor(dayOfWeek, isSelect, isValidDay)
-
         this.isSelect = isSelect
         this.isRange = isRange
+        this.reserved = reserved
         this.subTitle = subTitle
+        text = day.toString()
+        setDayTextColor(dayOfWeek, isSelect, isValidDay)
     }
 
     fun bindDummyDay(day: Int, isRange: Boolean) {
@@ -132,21 +143,23 @@ class DayView @JvmOverloads constructor(
 
     private fun setDayTextColor(dayOfWeek: Int, isSelect: Int, isValidDay: Boolean) {
         when {
+            //TODO 오늘 이전
 //            isValidDay.not() -> {
 //                setTextColor(ContextCompat.getColor(context, R.color.invalid_day_color))
 //            }
-//            isSelect != NONE_SELECT -> {
-//                setTextColor(ContextCompat.getColor(context, R.color.grey0))
-//            }
+            isSelect != NONE_SELECT -> {
+                setTextColor(ContextCompat.getColor(context, R.color.white))
+            }
+            //TODO 요일색 정해지면 쓰기
 //            dayOfWeek == SUNDAY -> {
-//                setTextColor(ContextCompat.getColor(context, R.color.red500_base))
+//                setTextColor(ContextCompat.getColor(context, R.color.red500))
 //            }
 //            dayOfWeek == SATURDAY -> {
-//                setTextColor(ContextCompat.getColor(context, R.color.blue600_base))
+//                setTextColor(ContextCompat.getColor(context, R.color.blue500))
 //            }
-//            else -> {
-//                setTextColor(ContextCompat.getColor(context, R.color.fit_on_background_emphasis_high_type))
-//            }
+            else -> {
+                setTextColor(ContextCompat.getColor(context, R.color.black_daynight))
+            }
         }
     }
 }

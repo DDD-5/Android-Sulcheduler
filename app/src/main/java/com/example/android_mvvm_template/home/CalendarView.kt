@@ -116,5 +116,6 @@ data class MonthEntity(
     val startDate: LocalDate,
     val endDate: LocalDate,
     val startDayOfWeek: Int,
-    val endDayOfWeek : Int
+    val endDayOfWeek : Int,
+    val reservedList: List<Int> = listOf(1)
 )

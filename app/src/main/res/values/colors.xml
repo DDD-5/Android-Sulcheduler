@@ -14,4 +14,7 @@
     <color name="silver_alpha_87">#dec8c8c8</color>
     <color name="tundora">#de474747</color>
     <color name="martini">#979797</color>
+
+    <color name="black_daynight">@color/black</color>
+    <color name="white_daynight">@color/white</color>
 </resources>
